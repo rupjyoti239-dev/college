@@ -1,0 +1,19 @@
+ul li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+.hover {
+  color: black; 
+  transition: all 0.3s; 
+}
+
+.hover:hover {
+  color: red; 
+} 
+
+.card {
+    margin: 0 auto; 
+}
+
