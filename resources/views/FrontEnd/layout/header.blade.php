@@ -29,7 +29,7 @@
         <a class="nav-link text-light" href="#">Calendar</a>
       </li>
       <li class="nav-item mx-2">
-        <a class="nav-link text-light" href="#">Admin</a>
+        <a class="nav-link text-light" href="{{ route('admin.login.form') }}">Admin</a>
       </li>
     </ul>
   </div>
