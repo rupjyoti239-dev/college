@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Banner\BannerController;
 use App\Http\Controllers\Admin\Department\DepartmentController;
 use App\Http\Controllers\Admin\Faculty\FacultyController;
 use App\Http\Controllers\Admin\LoginController;
@@ -68,3 +69,12 @@ Route::post('/admin/faculty/store', [FacultyController::class, 'store'])->name('
 Route::get('/admin/faculty/{id}/edit', [FacultyController::class, 'edit'])->name('admin.faculty.edit');
 Route::put('/admin/faculty/{id}/update', [FacultyController::class, 'update'])->name('admin.faculty.update');
 Route::delete('/admin/faculty/{id}/delete', [FacultyController::class, 'delete'])->name('admin.faculty.delete');
+
+
+
+#banner
+Route::get('/admin/banners', [BannerController::class, 'index'])->name('admin.banner.list');
+Route::get('/admin/banner/add', [BannerController::class, 'add'])->name('admin.banner.add');
+Route::post('/admin/banner/store', [BannerController::class, 'store'])->name('admin.banner.store');
+Route::delete('/admin/banner/{id}/delete', [BannerController::class, 'delete'])->name('admin.banner.delete');
+Route::get('/admin/banner/{id}/status',[BannerController::class,'status'])->name('admin.banner.status');

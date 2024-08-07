@@ -86,6 +86,16 @@
           <i class="fa-solid fa-cog"></i> Faculties
         </a>
       </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link {{ Route::currentRouteName() == 'admin.banner.list' ? 'active' : '' }}"
+          href="{{ route('admin.banner.list') }}">
+          <i class="fa-solid fa-cog"></i> Banner
+        </a>
+      </li>
+
+
     </ul>
   </nav>
 

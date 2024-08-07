@@ -9,7 +9,7 @@ class Faculty extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'designation', 'email', 'joining_date', 'subject_id', 'department_id'];
+    protected $fillable = ['name', 'designation', 'email', 'joining_date', 'subject_id', 'department_id','image'];
 
    
     public function subject()

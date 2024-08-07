@@ -58,6 +58,7 @@ class FacultyController extends Controller
         $faculty = Faculty::findOrFail($id);
 
         if ($faculty) {
+            FileService::delete($faculty->image);
             $faculty->delete();
             return back()->with('success', 'Faculty successfully deleted');
         } else {
