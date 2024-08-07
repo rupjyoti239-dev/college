@@ -3,7 +3,7 @@
 <div class="container">
   <h3 class="text-center mt-5">Update Faculty</h3>
 
-  <form action="{{ route('admin.faculty.update',['id'=>$faculty->id]) }}" method="POST" class="mt-4">
+  <form action="{{ route('admin.faculty.update',['id'=>$faculty->id]) }}" method="POST" class="mt-4" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
@@ -101,6 +101,19 @@
         <input type="date" id="joining_date" name="joining_date" class="form-control" value="{{ $faculty->joining_date }}">
         <span class="text-danger">
           @error('joining_date')
+          {{ $message }}
+          @enderror
+        </span>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <label class="col-form-label col-md-3 col-sm-3 label-align" for="image">Profile Image<span
+          class="required">*</span></label>
+      <div class="col-md-6 col-sm-6">
+        <input type="file" id="image" name="image" class="form-control">
+        <span class="text-danger">
+          @error('image')
           {{ $message }}
           @enderror
         </span>

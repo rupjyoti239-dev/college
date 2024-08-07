@@ -24,6 +24,7 @@
     <thead>
       <tr>
         <th>Sl No</th>
+        <th>Image</th>
         <th>Faculty Name</th>
         <th>Designation</th>
         <th>email</th>
@@ -37,6 +38,9 @@
       @foreach($faculties as $faculty)
       <tr>
         <td>{{ $loop->iteration }}</td>
+        <td>
+          <img src="{{ asset('backend_images/'.$faculty->image) }}" alt="" class="image-fluid" height="100">
+        </td>
         <td>{{ $faculty->name }}</td>
         <td>{{ $faculty->designation }}</td>
         <td>{{ $faculty->email }}</td>

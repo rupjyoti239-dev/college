@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Models\Faculty;
 use App\Models\Subject;
+use App\Services\FileService;
 use Illuminate\Http\Request;
 
 class FacultyController extends Controller
@@ -31,8 +32,14 @@ class FacultyController extends Controller
             'name' => 'required|string',
             'designation' => 'required|string',
             'joining_date' => 'required|date',
-            'email' => 'required|unique:faculties,email'
+            'email' => 'required|unique:faculties,email',
+            'image' => 'required|mimes:jpg,png,webp,jpeg|max:3000',
         ]);
+
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = FileService::save($request->file('image'));
+        }
 
        $faculty = new Faculty();
        $faculty->name = trim($request->name);
@@ -41,6 +48,7 @@ class FacultyController extends Controller
        $faculty->joining_date = ($request->joining_date);
        $faculty->department_id = ($request->department_id);
        $faculty->subject_id = ($request->subject_id);
+       $faculty->image = $imageName;
        $faculty->save();
         return redirect()->route('admin.faculty.list')->with('success', 'Faculty Add successfully');
     }
@@ -82,9 +90,12 @@ class FacultyController extends Controller
             'name' => 'required|string',
             'designation' => 'required|string',
             'joining_date' => 'required|date',
-            'email' => 'required|unique:faculties,email,'.$id
+            'email' => 'required|unique:faculties,email,'.$id,
+            'image' => 'nullable|mimes:jpg,png,webp,jpeg|max:3000',
         ]);
 
+        
+        
         $faculty = Faculty::findOrFail($id);
         $faculty->name = trim($request->name);
         $faculty->email = trim($request->email);
@@ -92,6 +103,15 @@ class FacultyController extends Controller
         $faculty->joining_date = ($request->joining_date);
         $faculty->department_id = ($request->department_id);
         $faculty->subject_id = ($request->subject_id);
+
+        if ($request->hasFile('image')) {
+            $old_image = $faculty->image;
+            FileService::delete($old_image);
+            
+            $imageName = FileService::save($request->file('image'));
+            $faculty->image = $imageName;
+        }
+        
         $faculty->save();
 
         return redirect()->route('admin.faculty.list')->with('success', 'Updated successfully');
