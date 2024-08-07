@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Banner\BannerController;
+use App\Http\Controllers\Admin\Contact\ContactController;
 use App\Http\Controllers\Admin\Department\DepartmentController;
 use App\Http\Controllers\Admin\Faculty\FacultyController;
 use App\Http\Controllers\Admin\LoginController;
@@ -78,3 +79,8 @@ Route::get('/admin/banner/add', [BannerController::class, 'add'])->name('admin.b
 Route::post('/admin/banner/store', [BannerController::class, 'store'])->name('admin.banner.store');
 Route::delete('/admin/banner/{id}/delete', [BannerController::class, 'delete'])->name('admin.banner.delete');
 Route::get('/admin/banner/{id}/status',[BannerController::class,'status'])->name('admin.banner.status');
+
+
+#contact
+Route::get('/admin/contact',[ContactController::class,'index'])->name('admin.contact.list');
+Route::get('/admin/contact/{id}/delete',[ContactController::class,'delete'])->name('admin.contact.delete');
